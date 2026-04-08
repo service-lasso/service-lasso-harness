@@ -36,12 +36,13 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version-file: go.mod
+          cache: false
 
       - name: Run tests
         shell: pwsh
@@ -85,14 +86,27 @@ jobs:
           "archive_name=$(Split-Path $archivePath -Leaf)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
 
       - name: Upload workflow artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ steps.build.outputs.archive_name }}
           path: ${{ steps.build.outputs.archive_path }}
 
-      - name: Attach archive to GitHub release
-        if: github.ref_type == 'tag'
-        uses: softprops/action-gh-release@v2
+  publish:
+    if: github.ref_type == 'tag'
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download built archives
+        uses: actions/download-artifact@v5
         with:
-          files: ${{ steps.build.outputs.archive_path }}
-          generate_release_notes: true
+          path: dist
+          merge-multiple: true
+
+      - name: Publish GitHub release assets
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 || \
+            gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --generate-notes
+          gh release upload "$GITHUB_REF_NAME" dist/* --repo "$GITHUB_REPOSITORY" --clobber
