@@ -1,0 +1,15 @@
+{
+  "id": "echo-service",
+  "name": "Echo Service",
+  "description": "Minimal sample service artifact for local harness packaging checks.",
+  "enabled": true,
+  "servicetype": "app",
+  "servicelocation": "runtime/win32",
+  "execconfig": {
+    "executable": "echo-service.ps1",
+    "execshell": "pwsh",
+    "healthcheck": {
+      "type": "process"
+    }
+  }
+}

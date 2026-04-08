@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://service-lasso.github.io/service-lasso-harness/schemas/service-harness.schema.json",
+  "title": "Service Lasso Harness Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "serviceId",
+    "artifact",
+    "dependencies",
+    "lifecycle",
+    "health",
+    "expect",
+    "artifacts"
+  ],
+  "properties": {
+    "serviceId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "kind"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "serviceId": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "default": []
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "install",
+        "config",
+        "start",
+        "stop"
+      ],
+      "properties": {
+        "install": {
+          "type": "boolean"
+        },
+        "config": {
+          "type": "boolean"
+        },
+        "start": {
+          "type": "boolean"
+        },
+        "stop": {
+          "type": "boolean"
+        }
+      }
+    },
+    "health": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "timeoutSeconds"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "process",
+            "http",
+            "tcp",
+            "file",
+            "variable"
+          ],
+          "default": "process"
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "expect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "logs",
+        "state",
+        "exitClean"
+      ],
+      "properties": {
+        "logs": {
+          "type": "boolean"
+        },
+        "state": {
+          "type": "boolean"
+        },
+        "exitClean": {
+          "type": "boolean"
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "captureLogs",
+        "captureState",
+        "captureSummary"
+      ],
+      "properties": {
+        "captureLogs": {
+          "type": "boolean"
+        },
+        "captureState": {
+          "type": "boolean"
+        },
+        "captureSummary": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
