@@ -79,7 +79,16 @@ GitHub Actions now builds release archives for:
 
 Behavior:
 - `workflow_dispatch` builds and uploads workflow artifacts
-- pushing a tag like `v0.1.0` builds the archives and attaches them to a GitHub release
+- pushing a tag like `v2026.4.9+3a3ae1b` builds the archives and attaches them to a GitHub release
+
+Preferred release tag format for this repo:
+- `vYYYY.M.D+<shortsha>`
+- example: `v2026.4.9+3a3ae1b`
+
+Reasoning:
+- keeps the main version date-readable
+- keeps semver ordering sane
+- avoids pretending we already have a mature product-version scheme
 
 Current `run` behavior is intentionally stubbed:
 - validates the contract

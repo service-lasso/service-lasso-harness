@@ -198,6 +198,10 @@ Typical heavier path:
 - optionally run OS matrix / dependency scenarios
 - publish only after harness passes
 
+Current preferred release-tag convention for this repo:
+- `vYYYY.M.D+<shortsha>`
+- example: `v2026.4.9+3a3ae1b`
+
 ### Important rule
 CI should not invent a different validation model.
 
