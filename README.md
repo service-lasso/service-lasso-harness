@@ -69,6 +69,18 @@ Run the current stub flow and write result artifacts:
 go run ./cmd/service-lasso-harness run --contract examples/service-template/service-harness.json --output-dir output/example-run
 ```
 
+## Release automation
+
+GitHub Actions now builds release archives for:
+- Windows amd64
+- Linux amd64
+- macOS amd64
+- macOS arm64
+
+Behavior:
+- `workflow_dispatch` builds and uploads workflow artifacts
+- pushing a tag like `v0.1.0` builds the archives and attaches them to a GitHub release
+
 Current `run` behavior is intentionally stubbed:
 - validates the contract
 - applies default `health.type=process` when omitted

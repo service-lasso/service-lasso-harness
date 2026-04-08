@@ -1,3 +1,4 @@
 .gocache/
+dist/
 output/
 examples/service-template/dist/
