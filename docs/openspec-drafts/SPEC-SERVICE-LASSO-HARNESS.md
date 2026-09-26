@@ -38,7 +38,7 @@ Explicitly out of scope for this spec:
 ## Tests and Evidence
 Planning evidence currently available:
 - `README.md`
-- `docs/usage-flow.md`
+- Core `docs/service-authoring/harness-starter.md` (reader journey; current-source reconciliation tracked in Core #1418)
 - `docs/openspec-drafts/OPENSPEC-TRACKER.md`
 - `C:\projects\service-lasso\service-template\docs\openspec-drafts\SPEC-SERVICE-TEMPLATE-REPO.md`
 - `C:\projects\service-lasso\service-template\docs\reference\SERVICE-TEMPLATE-REPO.md`
@@ -55,7 +55,7 @@ Implementation evidence required later:
 ## Documentation Impact
 This spec is expected to govern or inform:
 - `README.md`
-- `docs/usage-flow.md`
+- Core `docs/service-authoring/harness-starter.md` (reader journey; current-source reconciliation tracked in Core #1418)
 - future `docs/validation-contract.md`
 - future `schemas/service-harness.schema.json`
 - future CLI/runner docs for the released binary
@@ -240,3 +240,8 @@ The harness should not overrun the template contract, but it still needs its own
 - Which output artifacts should be mandatory for every run?
 - How much platform-specific logic should live in the Go binary versus service-owned wrappers/config?
 - Should there be an optional helper installer/bootstrap path for acquiring the binary, or should pinned direct release-asset download remain the only supported path?
+
+
+## Reader documentation reconciliation (Harness #3 / Core #1418)
+
+README and the former usage-flow reader journey are centralized under Core SPEC-002 AC-4AJ / AC-4AJ.3. Local docs/validation-contract.md records the current direct archive/process runner and its limitations. This draft's real Core lifecycle, dependency, health and role-profile requirements remain design intent; documentation migration does not promote or complete them.

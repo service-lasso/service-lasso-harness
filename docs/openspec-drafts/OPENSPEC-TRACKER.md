@@ -21,7 +21,7 @@ Important rule:
 | `SPEC-CORE-SERVICE-RUNTIME.md` | Core | `draft` | `QUESTION-LIST-AND-CODE-VALIDATION.md`, `ARCHITECTURE-DECISIONS.md`, `SERVICE-MANAGER-BEHAVIOR.md`, `RUNTIME-API-INDEX.md` | future `.governance/specs/SPEC-CORE-SERVICE-RUNTIME.md` | `service-lasso` | Main runtime/service contract spec. |
 | `SPEC-UI-ADMIN-SERVICE.md` | UI | `draft` (expanded first-pass) | `SERVICEADMIN-NAV-AND-API.md`, `UI-STATE-REVIEW.md`, `SHADCN-ADMIN-*`, `REFERENCE-APP-*` | future `.governance/specs/SPEC-UI-ADMIN-SERVICE.md` | `lasso-@serviceadmin` | Optional admin UI/service contract; first concrete pass written from donor UI docs. |
 | `SPEC-SERVICE-TEMPLATE-REPO.md` | Service Template | `draft` (expanded first-pass) | `SERVICE-TEMPLATE-REPO.md`, `SERVICE-STRUCTURE-REVIEW.md`, representative `services/*/service.json` | future `.governance/specs/SPEC-SERVICE-TEMPLATE-REPO.md` | `service-template` | Service-author/template/release contract; first concrete pass written from donor template/structure docs. |
-| `SPEC-SERVICE-LASSO-HARNESS.md` | Harness | `draft` | `README.md`, `docs/usage-flow.md`, `service-template` planning docs | future `.governance/specs/SPEC-SERVICE-LASSO-HARNESS.md` or repo-local governed spec | `service-lasso-harness` | Dedicated harness spec covering Go implementation direction, release-binary distribution, consumer-repo interaction, and minimum v1 runner behavior. |
+| `SPEC-SERVICE-LASSO-HARNESS.md` | Harness | `draft` | `README.md`, Core `docs/service-authoring/harness-starter.md` (reader journey; current-source reconciliation tracked in Core #1418), `service-template` planning docs | future `.governance/specs/SPEC-SERVICE-LASSO-HARNESS.md` or repo-local governed spec | `service-lasso-harness` | Dedicated harness spec covering Go implementation direction, release-binary distribution, consumer-repo interaction, and minimum v1 runner behavior. |
 
 ## Explicit current repo mapping
 
@@ -71,3 +71,8 @@ Reasoning:
 - What exact sample service should ship first in the template repo?
 - What exact release artifact layout and packaging scripts should be mandatory?
 - How much generated/example state should the template include versus describe only?
+
+
+## Reader documentation reconciliation (Harness #3 / Core #1418)
+
+README and the former usage-flow reader journey are centralized under Core SPEC-002 AC-4AJ / AC-4AJ.3. Local docs/validation-contract.md records the current direct archive/process runner and its limitations. This draft's real Core lifecycle, dependency, health and role-profile requirements remain design intent; documentation migration does not promote or complete them.
