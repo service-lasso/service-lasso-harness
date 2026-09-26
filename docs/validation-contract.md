@@ -63,7 +63,10 @@ If `health.type` is omitted, the harness applies `process` before validation and
 - resolves `artifact.path` relative to the contract location
 - creates the requested output directory
 - writes `run-result.json` and `summary.json`
-- records intended stage status only
+- extracts ZIP or tar.gz archives into `<output-dir>/workspace/service` when install is enabled
+- reads service.json and prepares its execconfig environment
+- executes the manifest command synchronously when start is enabled, capturing process-output.log
+- records stage results from this direct execution
 
 For the bundled local example contract, create the artifact first with:
 - Windows: `pwsh -NoLogo -NoProfile -File .\scripts\package.ps1`
@@ -71,7 +74,7 @@ For the bundled local example contract, create the artifact first with:
 
 That packaging step builds `examples/service-template/dist/echo-service-win32.zip` from the tiny source payload under `examples/service-template/source/`.
 
-This is a stub starter flow. It does not yet install artifacts or execute lifecycle steps.
+This is a direct artifact runner, not a real Service Lasso runtime integration. It does not install declared dependencies, invoke Core lifecycle APIs, probe non-process health types, enforce the health timeout during execution, or implement every declared expect/artifacts requirement. A non-process health stage currently reports the accepted contract without probing its endpoint. Stop records that the synchronous command has completed; it does not demonstrate stopping a long-running service. The CLI still prints "stub run complete" on success; use the result files and source behavior rather than that legacy label.
 
 ## Result artifacts
 
